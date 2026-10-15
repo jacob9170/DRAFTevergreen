@@ -1,0 +1,143 @@
+:root {
+  --ink: #f6f3ec;
+  --glass: rgba(18, 22, 30, 0.82);
+  --accent: #ffd75e;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #1a1f2a;
+  color: var(--ink);
+  font-family: Manrope, system-ui, sans-serif;
+}
+
+canvas { display: block; }
+
+/* ---------- intro ---------- */
+#intro {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 40%, rgba(20, 26, 36, 0.55), rgba(10, 12, 18, 0.88));
+  backdrop-filter: blur(6px);
+  transition: opacity 0.8s ease;
+  z-index: 10;
+}
+#intro.hidden { opacity: 0; pointer-events: none; }
+
+.intro-card { max-width: 520px; padding: 24px; text-align: center; }
+.eyebrow { letter-spacing: 0.2em; text-transform: uppercase; font-size: 12px; opacity: 0.7; }
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: clamp(48px, 10vw, 84px);
+  margin: 0.1em 0 0.2em;
+}
+.lede { line-height: 1.6; opacity: 0.9; }
+.question { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; color: var(--accent); }
+.stats { font-size: 13px; opacity: 0.7; }
+.hint { font-size: 12px; opacity: 0.55; }
+
+#enter {
+  margin-top: 12px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px;
+  font: 600 16px Manrope, sans-serif;
+  background: var(--accent);
+  color: #1a1f2a;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+#enter:hover { transform: scale(1.05); }
+
+/* ---------- artist panel ---------- */
+#panel {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: min(360px, calc(100vw - 32px));
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-top: 4px solid var(--accent);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  transform: translateX(calc(100% + 40px));
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 5;
+}
+#panel.open { transform: none; }
+
+#panel h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; margin: 0 28px 6px 0; color: var(--accent); }
+#panel h3 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.6; margin: 18px 0 8px; }
+#panel p { margin: 6px 0; font-size: 14px; line-height: 1.5; }
+.muted { opacity: 0.7; font-size: 13px !important; }
+
+#panel-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--ink);
+  font-size: 26px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+#panel-close:hover { opacity: 1; }
+
+#panel-curve { width: 100%; height: 80px; display: block; }
+
+#panel-tracks { list-style: none; padding: 0; margin: 0 0 14px; }
+#panel-tracks button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  font: 14px Manrope, sans-serif;
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+#panel-tracks button:hover { background: rgba(255, 255, 255, 0.14); }
+#panel-tracks .play { color: var(--accent); font-size: 11px; }
+#panel-tracks .title { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#panel-tracks .count { opacity: 0.6; font-size: 12px; }
+
+#spotify-embed { border-radius: 12px; overflow: hidden; }
+
+/* ---------- obsession caption ---------- */
+#toast {
+  position: fixed;
+  left: 50%;
+  bottom: 96px;
+  max-width: min(620px, calc(100vw - 32px));
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: center;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 6;
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+#toast strong { color: #ff8fb1; }
+#toast em { display: block; margin-top: 6px; opacity: 0.85; font-style: normal; }

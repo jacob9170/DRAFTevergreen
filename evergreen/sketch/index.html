@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evergreen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="stage"></main>
+
+  <!-- Start screen (also unlocks audio, which browsers require a click for) -->
+  <section id="intro">
+    <div class="intro-card">
+      <p class="eyebrow">A data self-portrait</p>
+      <h1>Evergreen</h1>
+      <p class="lede">Every artist I have listened to on Spotify has been planted.
+        It grows with every hour I give it, blooms flowers when I stream a lot,
+        and wilts when I move on.</p>
+      <p class="question">Which music grew up with me - and which did I outgrow?</p>
+      <p id="intro-stats" class="stats"></p>
+      <button id="enter">Enter the garden 🌱</button>
+      <p class="hint">Experiences best with sound on.</p>
+    </div>
+  </section>
+
+  <!-- Artist story panel -->
+  <aside id="panel">
+    <button id="panel-close" aria-label="Close">×</button>
+    <h2 id="panel-artist"></h2>
+    <p id="panel-stats" class="muted"></p>
+    <p id="panel-now"></p>
+    <h3>Obsession curve, 2016–2026</h3>
+    <canvas id="panel-curve"></canvas>
+    <h3>Most played</h3>
+    <ul id="panel-tracks"></ul>
+    <div id="spotify-embed"></div>
+  </aside>
+
+  <div id="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/plant.js"></script>
+  <script src="js/garden.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/soundscape.js"></script>
+  <script src="js/spotify.js"></script>
+  <script src="js/panel.js"></script>
+  <script src="sketch.js"></script>
+
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+</body>
+</html>
